@@ -2,8 +2,6 @@
 verifique quantos números são positivos e quantos são negativos, mostrando o resultado na
 tela.*/
 
-//REFAZER
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -11,7 +9,7 @@ tela.*/
 #include <locale.h>
 
 int main() {
-    setlocale(LC_ALL,"");
+    setlocale(LC_ALL," ");
 
     float num[10];
     int i, pos = 0, neg = 0, neutro = 0;
