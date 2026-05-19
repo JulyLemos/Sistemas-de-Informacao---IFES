@@ -19,7 +19,7 @@ int main(){
 
     for(i = 0; i < 4; i++){
         for(j = 0; j < 4; j++){
-            if(num[j] > n[j+1]) {
+            if(num[j] > num[j+1]) {
                 aux = num[j];
                 num[j] = num[j+1];
                 num[j+1] = aux;
@@ -27,7 +27,7 @@ int main(){
         }
     }
 
-    printf(n[5]);
+    printf(num[5]);
 
     return 0;
 }
