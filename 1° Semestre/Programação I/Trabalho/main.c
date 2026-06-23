@@ -6,22 +6,23 @@
 //importando as funções de login dos usuarios
 #include "usuarios/login.h"
 
-#define MAX 100
-#define Arquivo "guias.txt"
-//struct das guias
+//importar funções dos menus
+#include "funcoes/funcoes_guia.h"
 
-typedef struct {  //estrutura de armazenamento de informações das guias
-    char titulo[50];
-    char materia[50];
-    char autor[50];
-    int data;
-    char livro[50];
-    char conteudo[MAX];
-} Guias; 
+// #define MAX 100
+// #define Arquivo "guias.txt"
+// //struct das guias
 
-void removerQuebraLinha(char texto[]){ //remove a quebra delinha no final
-    texto[strcspn(texto, "\n")] = '\0';
-}
+// typedef struct {  //estrutura de armazenamento de informações das guias
+//     char titulo[50];
+//     char materia[50];
+//     char autor[50];
+//     int data;
+//     char livro[50];
+//     char conteudo[MAX];
+// } Guias; 
+
+
 
 void menuAdmin(){}
 void menuAluno(){}
