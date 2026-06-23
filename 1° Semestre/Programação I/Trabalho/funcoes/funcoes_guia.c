@@ -18,7 +18,7 @@ void gravarGuia(Guia catalogo[], int n){
         fprintf(fp, "%s\n", catalogo[i].nome); //é basicamente o printf, porém, opera com arquivo, fp é um ponteiro de arquivo
         fprintf(fp, "%s\n", catalogo[i].materia);
         fprintf(fp, "%s\n", catalogo[i].autor);
-        fprintf(fp, "%s\n", catalogo[i].data);
+        fprintf(fp, "%d\n", catalogo[i].data);
         fprintf(fp, "%s\n", catalogo[i].conteudo);
         fprintf(fp, "%s\n", catalogo[i].livro); 
     }
@@ -137,7 +137,7 @@ void alterarGuia(Guia catalogo[], int n){
         return;
     }
 
-    printf("\nGuia encontrada. Dados atuais: \n")
+    printf("\nGuia encontrada. Dados atuais: \n");
     imprimirGuia(catalogo[pos]);
 
     printf("\nDigite os novos dados(ou apenas enter para manter o atual):\n");

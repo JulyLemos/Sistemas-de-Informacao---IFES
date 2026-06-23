@@ -9,7 +9,7 @@ typedef struct {
     char materia[20];
     char autor[20];
     int data;
-    char conteudo;
+    char conteudo[200];
     char livro[50];
 } Guia;
 
