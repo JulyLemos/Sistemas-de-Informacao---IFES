@@ -41,9 +41,9 @@ int main(){
 
     do {
         printf("Digite o valor de A:");
-        scanf("%f, &a");
+        scanf("%f", &a);
         printf("Digite o valor de B:");
-        scanf("%f, &b");
+        scanf("%f", &b);
 
         exibirMenu(); //procedimento -> exibir menu para o usuário
 
