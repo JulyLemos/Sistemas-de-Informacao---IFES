@@ -1,7 +1,10 @@
+//José Luiz Gussani Nery, July Lemos da Silva, Kash V Fernandes Azevedo Rezende.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <locale.h>
 
 //define a constante para essa versão se ainda não foi definida.
 #include <windows.h>
@@ -24,6 +27,8 @@ int main(void){
     GetConsoleMode(hOut, &dwMode);
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
+
+    setlocale(LC_ALL,"pt_BR.UTF-8");
 
     char logindigitado[20], senhadigitada [20];
     Login session;
@@ -56,10 +61,10 @@ int main(void){
     printf(">> %d Guias carregada(s) do arquivo.\n", qtd);
 
     //menu interativo
-    printf("\n\033[0;35m*-*-*-*-*-*-*- Login -*-*-*-*-*-*-*\033[0m\n");
-    printf("Digite o Usuário e a Senha (separados por espaço): ");
-    scanf("%s %s", logindigitado, senhadigitada);
-    getchar();
+    printf("\n\e[1;94m*-*-*-*-*-*-*- Entrar -*-*-*-*-*-*-*\033[0m\n");
+    printf(" Digite 0 para Cadastro e 1 para Login: ");
+    scanf("%d", )
+    
 
     // Tenta autenticar o usuário
     if (autenticar(logindigitado, senhadigitada, &session)) {
@@ -77,6 +82,7 @@ int main(void){
                 printf("3 - Alterar um guia\n");
                 printf("4 - Excluir uma guia\n");
                 printf("5 - Criar novo guia\n");
+                printf("6 - Cadastro\n")
                 printf("0 - Sair\n");
                 printf("Escolha uma opcao: ");
 
