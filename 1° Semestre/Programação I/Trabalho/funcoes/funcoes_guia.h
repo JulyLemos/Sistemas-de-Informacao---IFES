@@ -23,5 +23,6 @@ void pesquisarTexto(Guia catalogo[], int n, char termo[]); //função para pesqu
 void lerCampoTexto(char destino[], int tamanho); //função para ler o campo do texto
 void alterarGuia(Guia catalogo[], int n); //função para alterar algo na guia
 void excluirGuia(Guia catalogo[], int *n); //função para excluir guia
+void criarGuia(Guia catalogo[], int *n); //função para criar guia
 
 #endif
