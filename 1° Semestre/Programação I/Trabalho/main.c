@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+
+//define a constante para essa versão se ainda não foi definida.
 #include <windows.h>
+#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+    #define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+#endif
 
 //importando as funções de login dos usuarios
 #include "usuarios/login.h"
@@ -51,16 +56,13 @@ int main(void){
     printf(">> %d Guias carregada(s) do arquivo.\n", qtd);
 
     //menu interativo
-    int opcao;
-    char termo[100];
-
     printf("\n\033[0;35m*-*-*-*-*-*-*- Login -*-*-*-*-*-*-*\033[0m\n");
     printf("Digite o Usuário e a Senha (separados por espaço): ");
     scanf("%s %s", logindigitado, senhadigitada);
     getchar();
 
     // Tenta autenticar o usuário
-    if (autenticar(logindigitado, senhadigitada, &session)) { 
+    if (autenticar(logindigitado, senhadigitada, &session)) {
         printf("\n\nLogin feito com sucesso, seja bem vinde, %s!\n", session.usuario);
 
         int opcao = -1; // Inicializa a variável de opção do menu
@@ -74,11 +76,12 @@ int main(void){
                 printf("2 - Pesquisar (digitar um termo)\n");
                 printf("3 - Alterar um guia\n");
                 printf("4 - Excluir uma guia\n");
+                printf("5 - Criar novo guia\n");
                 printf("0 - Sair\n");
                 printf("Escolha uma opcao: ");
 
                 scanf("%d", &opcao);
-                getchar(); 
+                getchar();
 
                 if (opcao == 1) {
                     for (int i = 0; i < qtd; i++) {
@@ -95,10 +98,13 @@ int main(void){
                 } else if (opcao == 4) {
                     excluirGuia(carregadas, &qtd);
                     gravarGuia(carregadas, qtd);
+                } else if (opcao == 5) {
+                    criarGuia(carregadas, &qtd);
+                    gravarGuia(carregadas, qtd);
                 } else if (opcao != 0) {
                     printf("Opcao invalida.\n");
                 }
-            } 
+            }
             else if (session.tipo == 0) { // --- MENU DO ALUNO ---
                 printf("\n============ MENU ALUNO ============\n");
                 printf("1 - Listar todas os guias\n");
@@ -120,7 +126,7 @@ int main(void){
                     pesquisarTexto(carregadas, qtd, termo);
                 } else if (opcao != 0) {
                     printf("Opcao invalida.\n");
-                }  
+                }
             }
 
         } while (opcao != 0); // Continua no menu até digitar 0
