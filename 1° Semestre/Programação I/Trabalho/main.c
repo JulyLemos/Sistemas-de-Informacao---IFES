@@ -63,8 +63,9 @@ int main(void){
     //menu interativo
     printf("\n\e[1;94m*-*-*-*-*-*-*- Entrar -*-*-*-*-*-*-*\033[0m\n");
     printf(" Digite 0 para Cadastro e 1 para Login: ");
-    scanf("%d", )
+    scanf("%d", );
     
+
 
     // Tenta autenticar o usuário
     if (autenticar(logindigitado, senhadigitada, &session)) {
