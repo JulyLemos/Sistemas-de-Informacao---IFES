@@ -6,20 +6,59 @@
 #include "login.h"
 
 int autenticar(char *usuario, char *senha, Login *loginCompleto){
-    //caso seja admin
-    if(strcmp(usuario, "admin") == 0 && strcmp(senha, "admin123") == 0){
-        strcpy(loginCompleto->usuario, usuario);
-        loginCompleto->tipo = 1; //para admin
-        return 1;
+    FILE *fp = fopen(ARQUIVO_USUARIOS,"r");
+    if (fp==NULL){
+        printf("Nenhum usuário cadastrado ainda.\n");
+        return 0;
     }
-
-    else if(strcmp(usuario, "aluno") == 0 && strcmp(senha, "aluno123") == 0){
-        strcpy(loginCompleto->usuario, usuario);
-        loginCompleto->tipo = 0; //aluno
-        return 1;
+    
+    Login temp;
+    while (fscanf(fp,"%s %s %d", temp.usuario, temp.senha, &temp.tipo) ==3) {
+        if (strcmp(usuario, temp.usario) == 0 && strcmp(senha, temp.senha) == 0) {
+            strcpy(loginCompleto->usuario, temp.usuario);
+            loginCompleto->tipo = temp.tipo;
+            fclose(fp);
+            return 1;
+        }
     }
-
+    
+    fclose(fp);
     return 0;
+}
+
+void cadastrarUsuario() {
+    Login novo;
+    char tipoDigitado[10];
+    
+    printf("\n=== Cadastrar novo usuário  ===\n");
+    
+    printf("\nNome de usuário: ");
+    scanf("%s", novo.usuario);
+    
+    printf("\nDigite uma senha: ");
+    scanf("%s", novo.senha);
+    
+    printf("\nTipo de usuário (admin/aluno): ");
+    scanf("%s", tipoDigitado);
+    getchar();
+    
+    if (strcmp(tipoDigitado, "admin") == 0) {
+        novo.tipo = 1;
+    } else {
+        novo.tipo = 0;
+    }
+    
+    FILE *fp = open(ARQUIVO_USUARIOS, "a");
+    if (fp== NULL) {
+        printf("\nErro ao acessar usuarios\n");
+        return;
+    }
+    
+    fprintf(fp, "%s %s %d\n", novo.usuario, novo.senha, novo.tipo);
+    fclose(fp);
+    
+    printf(">> Usuário \"%s\" cadastrado com sucesso !\n", novo.usuario);
+
 }
 
 //separar para caso for usuário normal ou administrador
