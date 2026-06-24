@@ -13,14 +13,14 @@ void gravarGuia(Guia catalogo[], int n){
     if (fp == NULL){
         printf("Erro: não foi possível abrir o arquivo para escrevê-lo");
         return;
-    } 
+    }
     for (int i = 0; i < n; i++) {
         fprintf(fp, "%s\n", catalogo[i].nome); //é basicamente o printf, porém, opera com arquivo, fp é um ponteiro de arquivo
         fprintf(fp, "%s\n", catalogo[i].materia);
         fprintf(fp, "%s\n", catalogo[i].autor);
         fprintf(fp, "%d\n", catalogo[i].data);
         fprintf(fp, "%s\n", catalogo[i].conteudo);
-        fprintf(fp, "%s\n", catalogo[i].livro); 
+        fprintf(fp, "%s\n", catalogo[i].livro);
     }
 
     fclose(fp); //fecha o arquivo em que o ponteiro está aberto, complemento de fopen
@@ -192,4 +192,41 @@ void excluirGuia(Guia catalogo[], int *n) {
     (*n)--; //vetor tem um ite a menos
 
     printf(">> Guia excluída\n");
+}
+
+void criarGuia(Guia catalogo[], int *n) {
+    if (*n >= MAX_GUIAS) {
+        printf("Limite de guias atingido.\n");
+        return;
+    }
+
+    char linha[200];
+    int pos = *n; // nova guia vai na próxima posição livre
+
+    printf("\n=== Criar novo guia ===\n");
+
+    printf("Nome do guia: ");
+    lerCampoTexto(catalogo[pos].nome, 50);
+
+    printf("Materia: ");
+    lerCampoTexto(catalogo[pos].materia, 20);
+
+    printf("Autor: ");
+    lerCampoTexto(catalogo[pos].autor, 50);
+
+    printf("Data de publicacao: ");
+    fgets(linha, 200, stdin);
+    removerQuebraLinha(linha);
+    catalogo[pos].data = atoi(linha);
+
+    printf("Conteudo: ");
+    lerCampoTexto(catalogo[pos].conteudo, 200);
+
+    printf("Livro: ");
+    lerCampoTexto(catalogo[pos].livro, 50);
+
+    (*n)++; // agora o vetor tem mais um item
+
+    printf("\n>> Guia criado com sucesso! Veja como ficou:\n");
+    imprimirGuia(catalogo[pos]);
 }
