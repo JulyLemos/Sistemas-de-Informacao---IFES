@@ -67,14 +67,14 @@ int lerGuia(Guia catalogo[]) {
 
 //imprime uma selecao de forma organizada
 void imprimirGuia(Guia g){
-    printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-    printf("Tema do Estudo......: %s\n", g.nome);
-    printf("Materia.............: %s\n", g.materia);
+    printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+    printf("\nTema..............: %s\n", g.nome);
+    printf("Matéria.............: %s\n", g.materia);
     printf("Autor...............: %s\n", g.autor);
-    printf("Data de Publica��o..: %d\n", g.data);
-    printf("Conte�do do Guia....: %s\n", g.conteudo);
-    printf("Cat�logo............: %s\n", g.livro);
-    printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+    printf("Data de Publicação..: %d\n", g.data);
+    printf("Conteúdo do Guia....: %s\n", g.conteudo);
+    printf("Catálogo............: %s\n", g.livro);
+    printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 }
 
 
@@ -127,13 +127,13 @@ void lerCampoTexto(char destino[], int tamanho){
 void alterarGuia(Guia catalogo[], int n){
     char alvo[50];
 
-    printf("Digite o nome da guia que deseja alterar: ");
+    printf("\nDigite o nome da guia que deseja alterar: ");
     fgets(alvo, 50, stdin);
     removerQuebraLinha(alvo);
 
     int pos = pesquisarPorNome(catalogo, n, alvo);
     if (pos == -1) {
-        printf("Guia \"%s\" não encontrada. \n", alvo);
+        printf("\nGuia \"%s\" não encontrada. \n", alvo);
         return;
     }
 
@@ -144,27 +144,27 @@ void alterarGuia(Guia catalogo[], int n){
 
     char linha[200];
 
-    printf("Novo nome.........:");
+    printf("\nNovo nome.........:");
     lerCampoTexto(catalogo[pos].nome, 50);
 
-    printf("Nova materia: ");
+    printf("\nNova matéria: ");
     lerCampoTexto(catalogo[pos].materia, 20);
 
-    printf("Novo autor: ");
+    printf("\nNovo autor: ");
     lerCampoTexto(catalogo[pos].autor, 20);
 
-    printf("Novo data: ");
+    printf("\nNovo data: ");
     fgets(linha, 200, stdin);
     removerQuebraLinha(linha);
     if (strlen(linha) > 0) catalogo[pos].data = atoi(linha);
 
-    printf("Novo conteudo: ");
+    printf("\nNovo conteúdo: ");
     lerCampoTexto(catalogo[pos].conteudo, 200);
 
-    printf("Novo livro: ");
+    printf("\nNovo livro: ");
     lerCampoTexto(catalogo[pos].livro, 50);
 
-    printf("\n >> Dados alterados na memoria. Veja como ficou: \n");
+    printf("\n >> Dados alterados na memória. Veja como ficou: \n");
     imprimirGuia(catalogo[pos]);
 }
 
@@ -172,13 +172,13 @@ void alterarGuia(Guia catalogo[], int n){
 void excluirGuia(Guia catalogo[], int *n) {
     char alvo[50];
 
-    printf("Digite o nome da guia que deseja excluir: ");
+    printf("\nDigite o nome da guia que deseja excluir: ");
     fgets(alvo, 50, stdin);
     removerQuebraLinha(alvo);
 
     int pos = pesquisarPorNome(catalogo, *n, alvo);
     if (pos == -1){
-        printf("Guia \"%s\" nao encontrada.\n", alvo);
+        printf("\nGuia \"%s\" não encontrada.\n", alvo);
         return;
     }
 
@@ -191,12 +191,12 @@ void excluirGuia(Guia catalogo[], int *n) {
     }
     (*n)--; //vetor tem um ite a menos
 
-    printf(">> Guia excluída\n");
+    printf("\n>> Guia excluída\n");
 }
 
 void criarGuia(Guia catalogo[], int *n) {
     if (*n >= MAX_GUIAS) {
-        printf("Limite de guias atingido.\n");
+        printf("\nLimite de guias atingido.\n");
         return;
     }
 
@@ -205,24 +205,24 @@ void criarGuia(Guia catalogo[], int *n) {
 
     printf("\n=== Criar novo guia ===\n");
 
-    printf("Nome do guia: ");
+    printf("\nNome do guia: ");
     lerCampoTexto(catalogo[pos].nome, 50);
 
-    printf("Materia: ");
+    printf("\nMatéria: ");
     lerCampoTexto(catalogo[pos].materia, 20);
 
-    printf("Autor: ");
+    printf("\nAutor: ");
     lerCampoTexto(catalogo[pos].autor, 50);
 
-    printf("Data de publicacao: ");
+    printf("\nData de publicação: ");
     fgets(linha, 200, stdin);
     removerQuebraLinha(linha);
     catalogo[pos].data = atoi(linha);
 
-    printf("Conteudo: ");
+    printf("\nConteúdo: ");
     lerCampoTexto(catalogo[pos].conteudo, 200);
 
-    printf("Livro: ");
+    printf("\nLivro: ");
     lerCampoTexto(catalogo[pos].livro, 50);
 
     (*n)++; // agora o vetor tem mais um item
